@@ -14,8 +14,8 @@ export interface Project {
   description: string;
   details?: string[];
   link?: string;
-  image?: string; // New field for project image
-  color?: string; // New field for accent color
+  image?: string; 
+  color?: string; 
 }
 
 export interface SkillCategory {
@@ -26,7 +26,18 @@ export interface SkillCategory {
 export interface Achievement {
   title: string;
   description: string;
-  details?: string; 
+  icon?: any; 
+  color?: string;
+}
+
+export interface Publication {
+  title: string;
+  authors: string;
+  conference: string;
+  year: string;
+  doi: string;
+  link: string;
+  description: string;
 }
 
 export interface Education {

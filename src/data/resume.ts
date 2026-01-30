@@ -1,4 +1,4 @@
-import { Experience, Project, SkillCategory, Education } from "@/types";
+import { Experience, Project, SkillCategory, Education, Achievement, Publication } from "@/types";
 
 export const experiences: Experience[] = [
   {
@@ -109,4 +109,37 @@ export const contactInfo = {
   phone: "+91-8058992101",
   linkedin: "https://linkedin.com/in/rahul-rj",
   github: "https://github.com/rahulrj1"
+};
+
+export const achievements: Achievement[] = [
+  { 
+    title: "ICPC 2021", 
+    description: "Secured top 9.4% (Rank 471 out of 4990+ teams) in ICPC Preliminary Round.",
+    color: "#EAB308" // Yellow
+  },
+  { 
+    title: "MCM Scholarship", 
+    description: "Consistently recognized among the top 10% students each semester at IIT Indore.",
+    color: "#3B82F6" // Blue
+  },
+  { 
+    title: "Competitive Programming", 
+    description: "Solved 1K+ problems on LeetCode. Expert on Codeforces. 4* on CodeChef.",
+    color: "#10B981" // Green
+  },
+  { 
+    title: "Sports Gold Medal", 
+    description: "Awarded Gold Medal on achieving 1st rank in chess competition at Intra-IIT Sports Meet.",
+    color: "#F97316" // Orange
+  }
+];
+
+export const publication: Publication = {
+  title: "LSTM Based Real-Time Transient Stability Assessment Using Synchrophasors",
+  authors: "A. Iqbal, Rahul Kumar, U. Soni and T. Jain",
+  conference: "2024 6th Global Power, Energy and Communication Conference (GPECOM), Budapest, Hungary",
+  year: "2024",
+  doi: "10.1109/GPECOM61896.2024.10582708",
+  link: "https://ieeexplore.ieee.org/document/10582708",
+  description: "Proposed a data-driven model based on Long Short-Term Memory (LSTM) neural networks to identify the transient stability status of power systems in real-time."
 };
