@@ -3,6 +3,9 @@ export interface Experience {
   role: string;
   duration: string;
   description: string[];
+  logo: string;
+  color?: string; // Hex code or Tailwind color class for accent
+  backgroundImage?: string; // URL for a subtle background
 }
 
 export interface Project {

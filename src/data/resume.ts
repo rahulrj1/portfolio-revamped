@@ -2,7 +2,7 @@ import { Experience, Project, SkillCategory, Education } from "@/types";
 
 export const experiences: Experience[] = [
   {
-    company: 'Ocrolus - Team Automation India (Remote)',
+    company: 'Ocrolus - Team Automation India',
     role: 'Software Engineer (Backend)',
     duration: 'Apr 2025 – Present',
     description: [
@@ -10,30 +10,39 @@ export const experiences: Experience[] = [
       'Built RFB test suites in Java (Spring Boot) to continuously validate TPS behavior and trigger alerts on test failures.',
       'Designed and developed a RAG-based chatbot (Ollie) for CX support, implementing vector embeddings and LLM-based retrieval from data.',
       'Led end-to-end delivery of Ollie, including HLD, LLD, infrastructure setup, load testing, and production readiness.'
-    ]
+    ],
+    logo: '', 
+    color: '#3B82F6', 
+    // Image: Professional financial workspace with documents and data analysis - Directly relevant to "Document Automation"
+    backgroundImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop'
   },
   {
-    company: 'Zomato - Team OneSupport (Gurugram)',
-    role: 'Software Development Engineer-I, Backend',
+    company: 'Zomato - Team OneSupport',
+    role: 'SDE-I (Backend)',
     duration: 'Nov 2024 – Mar 2025',
     description: [
       'Worked on OneSupport, a backend SDK powering post-order support across Zomato, Blinkit, District, and Hyperpure.',
-      'Led SDK integration into the Merchant KAM (Key Accounts Manager) app, delivering features and fixes for rollout, improving ticket resolution metrics via automation-driven escalations.',
-      'Played a key role in optimizing infra costs by $7,000+ p.m. through efficient data management: enabling SQS bulk fetching, adding pre-enqueue validations, merging low-usage workers, and archiving old MongoDB data.',
+      'Led SDK integration into the Merchant KAM app, delivering features and fixes for rollout, improving ticket resolution metrics via automation.',
+      'Played a key role in optimizing infra costs by $7,000+ p.m. through efficient data management: enabling SQS bulk fetching and archiving old MongoDB data.',
       'Resolved a critical authorization bug, preventing Vendor Managers from accessing tickets outside their scope, ensuring data privacy.'
-    ]
+    ],
+    logo: '',
+    color: '#E23744', 
+    backgroundImage: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop'
   },
   {
-    company: 'Jio Platforms - Team Jio Edge Cloud (Navi Mumbai)',
+    company: 'Jio Platforms - Jio Edge Cloud',
     role: 'Software Development Engineer',
     duration: 'Aug 2023 – Oct 2024',
     description: [
-      'Built backend services for the Jio Edge Cloud platform, including a datacenter management tool that reduced cluster provisioning time by 70% by replacing manual workflows.',
+      'Built backend services for the Jio Edge Cloud platform, including a datacenter management tool that reduced cluster provisioning time by 70%.',
       'Developed Go REST APIs backed by MongoDB, leveraging aggregation pipelines for efficient and scalable data access.',
       'Implemented fine-grained authorization using OpenFGA, enabling policy-driven access control across platform resources.',
-      'Integrated Cisco APIC APIs to fetch switch metadata and expose it via internal backend services.',
       'Containerized backend services using Docker and deployed on K8s, across VM-based and containerized environments.'
-    ]
+    ],
+    logo: '',
+    color: '#0F52BA', 
+    backgroundImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'
   }
 ];
 

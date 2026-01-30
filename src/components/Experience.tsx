@@ -1,95 +1,113 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { experiences } from '@/data/resume';
-import { Briefcase, Calendar } from 'lucide-react';
+import { Calendar, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-32 bg-zinc-950 text-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+    <section id="experience" className="bg-black text-white relative py-32 overflow-hidden">
+      {/* Subtle Ambient Background */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
             Professional Journey
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Building scalable solutions and optimizing backend infrastructure at leading tech companies.
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            A timeline of building scalable backend systems and AI solutions.
           </p>
         </motion.div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical Line */}
-          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-purple-500/50 to-transparent transform md:-translate-x-1/2"></div>
-
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex flex-col md:flex-row gap-8 ${
-                  index % 2 === 0 ? 'md:flex-row-reverse' : ''
-                }`}
-              >
-                {/* Timeline Node */}
-                <div className="absolute left-[20px] md:left-1/2 top-0 w-10 h-10 bg-zinc-900 border-4 border-blue-500 rounded-full z-20 transform -translate-x-1/2 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                  <Briefcase className="w-4 h-4 text-blue-400" />
-                </div>
-
-                {/* Content Card */}
-                <div className="ml-12 md:ml-0 md:w-1/2 pt-2 md:pt-0">
-                  <div className={`
-                    relative p-8 rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm 
-                    hover:bg-zinc-900 hover:border-blue-500/30 transition-all duration-300 group
-                    ${index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'}
-                  `}>
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <div className="relative z-10">
-                      <div className="flex flex-col gap-2 mb-4">
-                        <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
-                          {exp.role}
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-3 text-sm">
-                          <span className="font-semibold text-gray-300">{exp.company}</span>
-                          <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
-                          <span className="flex items-center gap-1 text-gray-400 font-mono bg-zinc-800/50 px-2 py-1 rounded">
-                            <Calendar className="w-3 h-3" />
-                            {exp.duration}
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <ul className="space-y-3">
-                        {exp.description.map((item, i) => (
-                          <li key={i} className="flex items-start text-gray-400 leading-relaxed text-sm">
-                            <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-blue-500 rounded-full shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="max-w-5xl mx-auto space-y-24">
+          {experiences.map((exp, index) => (
+            <ExperienceCard key={index} experience={exp} index={index} />
+          ))}
         </div>
       </div>
     </section>
+  );
+};
+
+const ExperienceCard = ({ experience, index }: { experience: any; index: number }) => {
+  const isEven = index % 2 === 0;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: 0.1 }}
+      className={`flex flex-col md:flex-row gap-8 md:gap-16 items-center ${isEven ? '' : 'md:flex-row-reverse'}`}
+    >
+      {/* Visual Side */}
+      <div className="w-full md:w-1/2 relative group">
+        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-900">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-80"
+            style={{ backgroundImage: `url('${experience.backgroundImage}')` }}
+          />
+          {/* Dark Overlay Gradient - Reduced opacity for better visibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80"></div>
+          
+          {/* Company Name Overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-8">
+             <h3 className="text-3xl font-bold text-white mb-2 tracking-tight">{experience.company.split(' - ')[0]}</h3>
+             <p className="text-sm text-gray-300 font-mono flex items-center gap-2">
+               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: experience.color }}></span>
+               {experience.company.split(' - ')[1] || 'India'}
+             </p>
+          </div>
+        </div>
+        
+        {/* Decorative Element - Colored Accent Border */}
+        <div 
+          className={`absolute -bottom-4 -right-4 w-full h-full border border-white/5 rounded-2xl -z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2`}
+          style={{ borderColor: `${experience.color}30` }}
+        ></div>
+      </div>
+
+      {/* Content Side */}
+      <div className="w-full md:w-1/2">
+        <div className="flex items-center gap-3 mb-4">
+           <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-400 flex items-center gap-2">
+             <Calendar className="w-3 h-3" /> {experience.duration}
+           </span>
+        </div>
+        
+        <h3 className="text-3xl font-bold mb-6 text-white leading-tight">
+          {experience.role}
+        </h3>
+
+        <ul className="space-y-4">
+          {experience.description.map((item: string, i: number) => (
+            <li key={i} className="flex items-start gap-4 group/item">
+              <span className="mt-1.5 min-w-[6px] h-1.5 rounded-full bg-zinc-700 group-hover/item:bg-white transition-colors duration-300"></span>
+              <p className="text-gray-400 leading-relaxed text-sm group-hover/item:text-gray-300 transition-colors duration-300">
+                {item}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-8 pt-8 border-t border-white/5">
+           <div className="flex items-center gap-2 text-sm text-gray-500 font-medium">
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: experience.color }}></span>
+              Backend Architecture &bull; System Design &bull; Optimization
+           </div>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
