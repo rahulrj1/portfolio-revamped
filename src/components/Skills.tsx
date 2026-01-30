@@ -1,27 +1,5 @@
 import React from 'react';
-
-const skills = {
-  "Languages & Frameworks": [
-    "Go", "Python", "Java", "C/C++", "JavaScript", 
-    "Spring Boot", "Flask", "ReactJS", "ExpressJS", "Django"
-  ],
-  "Backend & Systems": [
-    "REST", "gRPC", "Microservices", "System Design",
-    "Authentication (JWT, OAuth)", "Authorization (OpenFGA)",
-    "Async Processing", "WebSockets"
-  ],
-  "Databases & Streaming": [
-    "PostgreSQL", "MongoDB", "MySQL", "Redis", "Kafka"
-  ],
-  "AI & ML": [
-    "LLM Integration", "RAG (Retrieval-Augmented Generation)", 
-    "Vector Embeddings", "Vector Stores", "Prompt Engineering"
-  ],
-  "Infrastructure & Tools": [
-    "Docker", "Kubernetes", "Linux", "Git", 
-    "Logging & Monitoring", "Observability", "Cursor IDE"
-  ]
-};
+import { skills } from '@/data/resume';
 
 const Skills = () => {
   return (

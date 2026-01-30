@@ -1,6 +1,6 @@
-import React from 'react';
+import { Experience, Project, SkillCategory, Education } from "@/types";
 
-const experiences = [
+export const experiences: Experience[] = [
   {
     company: 'Ocrolus - Team Automation India (Remote)',
     role: 'Software Engineer (Backend)',
@@ -37,43 +37,63 @@ const experiences = [
   }
 ];
 
-const Experience = () => {
-  return (
-    <section id="experience" className="py-20 bg-zinc-900 text-white relative">
-      <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-4xl font-bold mb-16 text-center text-blue-400">Professional Experience</h2>
-        <div className="relative border-l-2 border-zinc-700 ml-4 md:ml-10 space-y-16">
-          {experiences.map((exp, index) => (
-            <div key={index} className="relative pl-8 md:pl-12 group">
-              {/* Timeline Dot */}
-              <div className="absolute -left-[9px] top-0 w-5 h-5 bg-zinc-900 border-4 border-blue-500 rounded-full group-hover:bg-blue-500 transition-colors duration-300"></div>
-              
-              <div className="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-zinc-800 hover:border-blue-500/50 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.15)] transition-all duration-300">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-2">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors">{exp.role}</h3>
-                    <p className="text-lg text-gray-400 font-medium">{exp.company}</p>
-                  </div>
-                  <span className="shrink-0 text-sm font-mono bg-blue-500/10 text-blue-300 px-4 py-1.5 rounded-full border border-blue-500/20">
-                    {exp.duration}
-                  </span>
-                </div>
-                
-                <ul className="space-y-3">
-                  {exp.description.map((item, i) => (
-                    <li key={i} className="flex items-start text-gray-300 leading-relaxed">
-                      <span className="mr-3 mt-2 w-1.5 h-1.5 bg-blue-500 rounded-full shrink-0"></span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+export const projects: Project[] = [
+  {
+    title: 'Online Chess Platform',
+    tech: ['ExpressJS', 'WebSockets', 'MongoDB', 'ReactJS', 'JWT', 'Bcrypt'],
+    description: 'Built a real-time multiplayer chess platform using WebSockets to enable low-latency 2-player gameplay.',
+    details: [
+      'Designed & implemented core chess engine logic with move validation, turn enforcement & illegal-move prevention.',
+      'Implemented secure authentication using JWT and bcrypt, managing session state via HTTP cookies.',
+      'Developed REST APIs using Express.js, persisting game state and user data in MongoDB schemas.'
+    ],
+    link: 'https://github.com/rahulrj1' 
+  },
+  {
+    title: 'Notes Managing Application',
+    tech: ['Django', 'REST APIs', 'MySQL'],
+    description: 'Secure and scalable note creation, retrieval, updates, and deletion.',
+    details: [
+      'Built REST APIs using Django, enabling secure and scalable note creation, retrieval, updates, and deletion.',
+      'Modeled relational data in MySQL with optimized queries and schema design to ensure data consistency and persistence.'
+    ],
+    link: 'https://github.com/rahulrj1'
+  }
+];
+
+export const skills: Record<string, string[]> = {
+  "Languages & Frameworks": [
+    "Go", "Python", "Java", "C/C++", "JavaScript", 
+    "Spring Boot", "Flask", "ReactJS", "ExpressJS", "Django"
+  ],
+  "Backend & Systems": [
+    "REST", "gRPC", "Microservices", "System Design",
+    "Authentication (JWT, OAuth)", "Authorization (OpenFGA)",
+    "Async Processing", "WebSockets"
+  ],
+  "Databases & Streaming": [
+    "PostgreSQL", "MongoDB", "MySQL", "Redis", "Kafka"
+  ],
+  "AI & ML": [
+    "LLM Integration", "RAG (Retrieval-Augmented Generation)", 
+    "Vector Embeddings", "Vector Stores", "Prompt Engineering"
+  ],
+  "Infrastructure & Tools": [
+    "Docker", "Kubernetes", "Linux", "Git", 
+    "Logging & Monitoring", "Observability", "Cursor IDE"
+  ]
 };
 
-export default Experience;
+export const education: Education = {
+  institution: "Indian Institute of Technology Indore",
+  degree: "B.Tech. in Electrical Engineering",
+  duration: "Jul 2019 – May 2023",
+  gpa: "Overall CGPA: 8.49"
+};
+
+export const contactInfo = {
+  email: "rahuljas2050@gmail.com",
+  phone: "+91-8058992101",
+  linkedin: "https://linkedin.com/in/rahul-rj",
+  github: "https://github.com/rahulrj1"
+};
