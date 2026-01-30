@@ -75,7 +75,7 @@ const Achievements = () => {
                   href={publication.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-white bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-xl font-medium transition-all w-fit group/btn"
+                  className="inline-flex items-center gap-2 text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 hover:border-blue-500/50 px-6 py-3 rounded-xl font-medium transition-all w-fit group/btn mt-4"
                 >
                   <BookOpen className="w-4 h-4" />
                   Read Research Paper
