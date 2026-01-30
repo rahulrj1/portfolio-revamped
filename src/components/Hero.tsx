@@ -129,16 +129,16 @@ const Hero = () => {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-0 w-full py-8 border-t border-white/5 bg-gradient-to-t from-black to-transparent backdrop-blur-[2px]"
       >
-        <div className="flex overflow-hidden opacity-60 hover:opacity-100 transition-opacity duration-700">
+        <div className="flex overflow-hidden opacity-80 hover:opacity-100 transition-opacity duration-700">
            <div className="flex gap-16 animate-infinite-scroll w-max hover:pause pl-4 items-center">
             {[...techStack, ...techStack].map((tech, i) => (
-              <div key={i} className="flex items-center gap-3 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+              <div key={i} className="flex items-center gap-3 transition-all duration-300 opacity-80 hover:opacity-100 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] cursor-pointer">
                 <img 
                   src={tech.icon} 
                   alt={tech.name} 
                   className="w-6 h-6 object-contain"
                 />
-                <span className="text-sm font-mono text-zinc-400 uppercase tracking-widest">
+                <span className="text-sm font-mono text-zinc-400 uppercase tracking-widest group-hover:text-white transition-colors">
                   {tech.name}
                 </span>
               </div>
@@ -169,7 +169,7 @@ const techStack = [
   { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
   { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
   { name: "Kubernetes", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
-  { name: "Kafka", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" },
+  { name: "Kafka", icon: "https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" },
   { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
   { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
   { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
