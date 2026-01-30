@@ -1,117 +1,169 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
-  return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-black text-white pt-20">
-      {/* Dynamic Background with Animated Gradients */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(17,24,39,1),_rgba(0,0,0,1))]"></div>
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth spring animation for mouse movement
+  const springConfig = { damping: 20, stiffness: 100 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const x = clientX / innerWidth;
+      const y = clientY / innerHeight;
       
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      setMousePosition({ x, y });
+      mouseX.set(clientX - innerWidth / 2);
+      mouseY.set(clientY - innerHeight / 2);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  // Parallax for text
+  const textX = useTransform(springX, [-500, 500], [-20, 20]);
+  const textY = useTransform(springY, [-500, 500], [-20, 20]);
+
+  return (
+    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-black text-white selection:bg-white/20">
+      
+      {/* 1. ARTISTIC BACKGROUND: "The Void & The Light" */}
+      <div className="absolute inset-0 z-0">
+        {/* Deep Atmospheric Base */}
+        <div className="absolute inset-0 bg-black"></div>
+        
+        {/* Moving Spotlight / Aurora */}
+        <motion.div 
+          style={{ 
+            x: springX, 
+            y: springY,
+          }}
+          className="absolute top-1/2 left-1/2 w-[1000px] h-[1000px] bg-blue-600/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 mix-blend-screen pointer-events-none"
+        />
+        
+        {/* Secondary Ambient Light (Contrast) */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-900/10 rounded-full blur-[150px] mix-blend-screen animate-pulse-slow"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-900/10 rounded-full blur-[150px] mix-blend-screen animate-pulse-slow animation-delay-2000"></div>
+
+        {/* Texture: Film Grain */}
+        <div className="absolute inset-0 opacity-[0.08] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] animate-grain pointer-events-none"></div>
       </div>
 
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
-
-      <div className="z-10 text-center px-4 max-w-5xl mx-auto">
+      {/* 2. MAIN COMPOSITION */}
+      <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center text-center">
+        
+        {/* Artistic Name Reveal */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 inline-block relative group"
+          style={{ x: textX, y: textY }}
+          className="relative mb-8 mix-blend-difference"
         >
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          <span className="relative py-2 px-6 rounded-full bg-black border border-zinc-800 text-sm font-medium text-blue-400 flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-            </span>
-            Backend Software Engineer
-          </span>
+          <motion.h1 
+            initial={{ opacity: 0, letterSpacing: "1em", filter: "blur(20px)" }}
+            animate={{ opacity: 1, letterSpacing: "-0.02em", filter: "blur(0px)" }}
+            transition={{ duration: 1.5, ease: "circOut" }}
+            className="text-[12vw] md:text-[10rem] font-bold leading-none tracking-tighter text-white select-none"
+          >
+            Rahul
+          </motion.h1>
+          <motion.h1 
+            initial={{ opacity: 0, letterSpacing: "1em", filter: "blur(20px)" }}
+            animate={{ opacity: 1, letterSpacing: "-0.02em", filter: "blur(0px)" }}
+            transition={{ duration: 1.5, delay: 0.2, ease: "circOut" }}
+            className="text-[12vw] md:text-[10rem] font-bold leading-none tracking-tighter text-zinc-500 select-none"
+          >
+            Kumar<span className="text-blue-500">.</span>
+          </motion.h1>
         </motion.div>
-        
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-6xl md:text-8xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white via-white/90 to-white/50"
-        >
-          Rahul Kumar
-        </motion.h1>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
-        >
-          Building <span className="text-white font-semibold">Scalable Systems</span>, <span className="text-white font-semibold">Microservices</span>, and integrating <span className="text-white font-semibold">AI Solutions</span>.
-        </motion.p>
-        
+
+        {/* Minimal Role Descriptor */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          transition={{ duration: 1, delay: 0.8 }}
+          className="flex items-center gap-6 mb-12"
+        >
+          <div className="h-px w-12 bg-zinc-700"></div>
+          <span className="font-mono text-sm md:text-base text-zinc-400 tracking-[0.2em] uppercase">
+            Backend Architect & System Designer
+          </span>
+          <div className="h-px w-12 bg-zinc-700"></div>
+        </motion.div>
+
+        {/* Elegant Call to Action */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="flex flex-col gap-8 items-center"
         >
           <a 
             href="#projects" 
-            className="group relative px-8 py-4 bg-white text-black font-bold rounded-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]"
+            className="group flex items-center gap-4 text-white hover:text-blue-400 transition-colors duration-500"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-            <span className="relative flex items-center gap-2">
-              View Work <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
+            <span className="text-lg font-medium tracking-wide border-b border-transparent group-hover:border-blue-400 transition-all">View Selected Works</span>
+            <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-500" />
           </a>
-          
-          <div className="flex gap-4">
-            <a 
-              href="https://github.com/rahulrj1" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-4 bg-zinc-900 text-white rounded-xl hover:bg-zinc-800 hover:text-white transition-all hover:scale-110 border border-zinc-800 hover:border-zinc-600"
-            >
-              <Github className="w-6 h-6" />
-            </a>
-            <a 
-              href="https://linkedin.com/in/rahul-rj" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-4 bg-zinc-900 text-white rounded-xl hover:bg-zinc-800 hover:text-white transition-all hover:scale-110 border border-zinc-800 hover:border-zinc-600"
-            >
-              <Linkedin className="w-6 h-6" />
-            </a>
-            <a 
-              href="mailto:rahuljas2050@gmail.com" 
-              className="p-4 bg-zinc-900 text-white rounded-xl hover:bg-zinc-800 hover:text-white transition-all hover:scale-110 border border-zinc-800 hover:border-zinc-600"
-            >
-              <Mail className="w-6 h-6" />
-            </a>
+
+          {/* Minimal Social Links */}
+          <div className="flex gap-8 mt-4">
+            <SocialLink href="https://github.com/rahulrj1" icon={<Github className="w-5 h-5" />} />
+            <SocialLink href="https://linkedin.com/in/rahul-rj" icon={<Linkedin className="w-5 h-5" />} />
+            <SocialLink href="mailto:rahuljas2050@gmail.com" icon={<Mail className="w-5 h-5" />} />
           </div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* 3. SUBTLE FOOTER / MARQUEE */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-0 w-full py-8 border-t border-white/5 bg-gradient-to-t from-black to-transparent"
       >
-        <div className="w-[30px] h-[50px] rounded-full border-2 border-white/20 flex justify-center p-2">
-          <motion.div 
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1.5 h-1.5 bg-white rounded-full"
-          />
+        <div className="flex overflow-hidden opacity-30 hover:opacity-100 transition-opacity duration-700">
+           <div className="flex gap-16 animate-infinite-scroll w-max hover:pause pl-4">
+            {techStack.map((tech, i) => (
+              <span key={i} className="text-sm font-mono text-zinc-500 uppercase tracking-widest">
+                {tech}
+              </span>
+            ))}
+            {techStack.map((tech, i) => (
+              <span key={`dup-${i}`} className="text-sm font-mono text-zinc-500 uppercase tracking-widest">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
       </motion.div>
+
     </section>
   );
 };
+
+const SocialLink = ({ href, icon }: { href: string, icon: any }) => (
+  <a 
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-zinc-500 hover:text-white transition-colors duration-300 transform hover:scale-110"
+  >
+    {icon}
+  </a>
+);
+
+const techStack = [
+  "Distributed Systems", "Microservices", "System Design", "Kafka", "Redis", 
+  "PostgreSQL", "MongoDB", "Docker", "Kubernetes", "AWS", "Go", "Python", 
+  "GraphQL", "gRPC", "High Availability", "Fault Tolerance"
+];
 
 export default Hero;
