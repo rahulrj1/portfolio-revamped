@@ -1,85 +1,113 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { skills } from '@/data/resume';
-import { BadgeCheck, Terminal, Cpu, Database, Cloud, Server } from 'lucide-react';
+import { Terminal, Server, Database, Cpu, Cloud, Code2 } from 'lucide-react';
 
 const Skills = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+  // Mapping categories to specific visual themes for a diverse look
+  const categoryConfig: Record<string, { icon: any, color: string, gradient: string }> = {
+    "Languages & Frameworks": { 
+      icon: Terminal, 
+      color: "text-emerald-400", 
+      gradient: "from-emerald-500/20 to-teal-500/5" 
+    },
+    "Backend & Systems": { 
+      icon: Server, 
+      color: "text-blue-400", 
+      gradient: "from-blue-500/20 to-indigo-500/5" 
+    },
+    "Databases & Streaming": { 
+      icon: Database, 
+      color: "text-amber-400", 
+      gradient: "from-amber-500/20 to-orange-500/5" 
+    },
+    "AI & ML": { 
+      icon: Cpu, 
+      color: "text-purple-400", 
+      gradient: "from-purple-500/20 to-pink-500/5" 
+    },
+    "Infrastructure & Tools": { 
+      icon: Cloud, 
+      color: "text-cyan-400", 
+      gradient: "from-cyan-500/20 to-sky-500/5" 
     }
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
-
-  const getIcon = (category: string) => {
-    if (category.includes('Languages')) return <Terminal className="w-5 h-5 text-green-400" />;
-    if (category.includes('Backend')) return <Server className="w-5 h-5 text-blue-400" />;
-    if (category.includes('Database')) return <Database className="w-5 h-5 text-yellow-400" />;
-    if (category.includes('AI')) return <Cpu className="w-5 h-5 text-purple-400" />;
-    if (category.includes('Infrastructure')) return <Cloud className="w-5 h-5 text-cyan-400" />;
-    return <BadgeCheck className="w-5 h-5 text-gray-400" />;
-  };
-
   return (
-    <section id="skills" className="py-32 bg-zinc-900 text-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+    <section id="skills" className="py-32 bg-zinc-950 text-white relative overflow-hidden">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
       
+      {/* Ambient Glows */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]"></div>
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-24"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50">
             Technical Arsenal
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            A comprehensive toolkit for building scalable, high-performance backend systems and AI-powered applications.
+            A curated stack of technologies for building high-performance, scalable systems.
           </p>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skills).map(([category, items], index) => (
-            <motion.div 
-              key={category}
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-50px" }}
-              className="bg-black/40 backdrop-blur-sm p-8 rounded-2xl border border-zinc-800 hover:border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-2xl duration-300 group"
-            >
-              <div className="flex items-center gap-3 mb-6 border-b border-zinc-800 pb-4">
-                <div className="p-2 bg-zinc-900 rounded-lg group-hover:bg-zinc-800 transition-colors">
-                  {getIcon(category)}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {Object.entries(skills).map(([category, items], index) => {
+            const config = categoryConfig[category] || { icon: Code2, color: "text-gray-400", gradient: "from-gray-500/20 to-gray-500/5" };
+            const Icon = config.icon;
+
+            return (
+              <motion.div 
+                key={category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`
+                  group relative p-8 rounded-3xl border border-white/5 bg-zinc-900/50 backdrop-blur-sm overflow-hidden
+                  ${category === "Backend & Systems" ? "lg:col-span-2 lg:row-span-1" : ""}
+                `}
+              >
+                {/* Hover Gradient Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${config.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                
+                <div className="relative z-10 h-full flex flex-col">
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className={`p-3 rounded-2xl bg-zinc-900 border border-white/10 group-hover:border-white/20 transition-colors ${config.color}`}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-200 group-hover:text-white transition-colors">
+                      {category}
+                    </h3>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {items.map((skill, i) => (
+                      <motion.span 
+                        key={i}
+                        whileHover={{ scale: 1.05 }}
+                        className={`
+                          px-3 py-1.5 text-sm font-medium rounded-lg 
+                          bg-white/5 border border-white/5 text-gray-400
+                          hover:bg-white/10 hover:text-white hover:border-white/10
+                          transition-all cursor-default
+                        `}
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-100 group-hover:text-white transition-colors">{category}</h3>
-              </div>
-              
-              <div className="flex flex-wrap gap-2">
-                {items.map((skill, i) => (
-                  <motion.span 
-                    key={i}
-                    variants={item}
-                    whileHover={{ scale: 1.05 }}
-                    className="px-3 py-1.5 bg-zinc-800/50 text-sm text-gray-300 rounded-md border border-zinc-700/50 hover:bg-zinc-700 hover:text-white hover:border-zinc-600 transition-all cursor-default"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
