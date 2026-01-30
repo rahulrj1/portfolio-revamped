@@ -1,31 +1,32 @@
 "use client";
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { projects } from '@/data/resume';
-import { Github, ArrowUpRight, Terminal, Cpu, Braces, Database } from 'lucide-react';
+import { Github, Cpu, Database } from 'lucide-react';
 
 const Projects = () => {
   return (
-    <section id="projects" className="bg-black text-white py-32 relative overflow-hidden">
-      {/* Background Texture */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="projects" className="bg-black text-white py-24 relative overflow-hidden">
+      {/* Ambient Background */}
+      <div className="absolute inset-0 bg-black">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02),transparent_50%)]"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03]"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-20">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-24 text-center"
         >
-          <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-br from-white via-zinc-400 to-zinc-700">
-            Selected Works
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4 text-white">
+            Featured Projects
           </h2>
-          <p className="text-zinc-500 max-w-2xl mx-auto text-lg font-light tracking-wide">
-            Architecting digital solutions with precision and scale.
-          </p>
+          <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-12 max-w-5xl mx-auto">
+        <div className="flex flex-col gap-16">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}
@@ -36,106 +37,135 @@ const Projects = () => {
 };
 
 const ProjectCard = ({ project, index }: { project: any; index: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  
+  // 3D Tilt Logic
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseX = useSpring(x, { stiffness: 150, damping: 20 });
+  const mouseY = useSpring(y, { stiffness: 150, damping: 20 });
+
+  function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const xPct = (event.clientX - rect.left) / width - 0.5;
+    const yPct = (event.clientY - rect.top) / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+    setIsHovered(false);
+  }
+
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["3deg", "-3deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-3deg", "3deg"]);
+
+  // Icon Selection
+  const Icon = index === 0 ? Cpu : Database;
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, delay: index * 0.1 }}
+    <motion.div
+      ref={ref}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="group relative w-full bg-zinc-900/30 border border-white/5 rounded-3xl overflow-hidden hover:border-white/10 transition-colors duration-500"
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6 }}
+      className="relative w-full max-w-5xl mx-auto group perspective-1000"
     >
-      {/* Dynamic Ambient Glow */}
-      <div 
-        className="absolute -inset-[200px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 blur-[100px] pointer-events-none"
-        style={{ background: `radial-gradient(circle, ${project.color}, transparent 70%)` }}
-      ></div>
-
-      <div className="relative p-8 md:p-12 flex flex-col md:flex-row gap-12 items-stretch">
+      {/* Main Card */}
+      <div className="relative overflow-hidden bg-zinc-900/40 backdrop-blur-xl border border-white/10 rounded-[1.5rem] p-8 md:p-10 transition-all duration-500 group-hover:border-white/20 group-hover:bg-zinc-900/60 shadow-xl">
         
-        {/* Abstract Visual Representation (Left) */}
-        <div className="w-full md:w-1/3 flex-shrink-0 relative min-h-[200px] md:min-h-full rounded-2xl overflow-hidden bg-zinc-950/50 border border-white/5 flex items-center justify-center">
-          {/* Animated Background Mesh */}
-          <div className="absolute inset-0 opacity-20">
-             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
-          </div>
-          
-          {/* Iconic Representation */}
-          <motion.div 
-            animate={{ 
-              scale: isHovered ? 1.1 : 1,
-              rotate: isHovered ? 5 : 0 
-            }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="relative z-10 p-6 rounded-2xl bg-zinc-900 border border-white/10 shadow-2xl"
-          >
-            {index === 0 ? (
-               <Cpu className="w-16 h-16" style={{ color: project.color }} />
-            ) : (
-               <Database className="w-16 h-16" style={{ color: project.color }} />
-            )}
-          </motion.div>
-
-          {/* Decorative Glowing Lines */}
-          <div className="absolute inset-0 overflow-hidden">
-             <motion.div 
-               className="absolute top-1/2 left-0 w-full h-[1px]"
-               style={{ background: `linear-gradient(90deg, transparent, ${project.color}, transparent)` }}
-               animate={{ x: ['-100%', '100%'] }}
-               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-             />
-          </div>
+        {/* Background Gradient & Effects */}
+        <div 
+          className="absolute inset-0 opacity-10 transition-opacity duration-700 group-hover:opacity-20"
+          style={{ background: `radial-gradient(circle at 80% 50%, ${project.color}, transparent 60%)` }}
+        ></div>
+        
+        {/* Giant Watermark Icon */}
+        <div className="absolute -right-10 -bottom-10 text-white/5 transform rotate-12 transition-transform duration-700 group-hover:scale-105 group-hover:rotate-6 pointer-events-none">
+          <Icon strokeWidth={0.5} size={300} />
         </div>
 
-        {/* Content (Right) */}
-        <div className="flex-1 flex flex-col justify-between">
-          <div>
-            <div className="flex justify-between items-start mb-6">
-              <h3 className="text-3xl md:text-4xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all duration-300">
+        {/* Content Layout */}
+        <div className="relative z-10 flex flex-col h-full transform translate-z-20">
+          
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+            <div className="space-y-1">
+              <span className="font-mono text-xs text-zinc-500 tracking-widest uppercase">
+                0{index + 1} / Project
+              </span>
+              <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all duration-300">
                 {project.title}
               </h3>
-              <div className="flex gap-3">
-                 <a 
-                   href={project.link} 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   className="p-3 rounded-full bg-zinc-800/50 hover:bg-white text-zinc-400 hover:text-black transition-all duration-300"
-                 >
-                   <Github className="w-5 h-5" />
-                 </a>
-              </div>
             </div>
+            
+            <div className="flex gap-4">
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2 rounded-full bg-white text-black text-sm font-bold hover:bg-zinc-200 transition-all transform hover:-translate-y-1"
+              >
+                <Github size={16} />
+                <span>Source</span>
+              </a>
+            </div>
+          </div>
 
-            <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+          {/* Description */}
+          <div className="max-w-3xl mb-8">
+            <p className="text-lg text-zinc-300 font-light leading-relaxed">
               {project.description}
             </p>
+          </div>
 
-            <div className="space-y-4 mb-8">
-              {project.details?.map((detail: string, i: number) => (
-                <div key={i} className="flex items-start gap-3">
-                  <Terminal className="w-5 h-5 mt-1 shrink-0 text-zinc-600 group-hover:text-white/50 transition-colors" />
-                  <span className="text-sm text-zinc-500 group-hover:text-zinc-300 transition-colors">
-                    {detail}
+          {/* Details & Tech Stack */}
+          <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-white/10">
+            {/* Key Features */}
+            <div className="space-y-4">
+              <h4 className="font-mono text-xs text-zinc-500 uppercase tracking-widest">Key Engineering</h4>
+              <ul className="space-y-2">
+                {project.details?.map((detail: string, i: number) => (
+                  <li key={i} className="flex items-start gap-2 text-zinc-400 group/item text-sm">
+                    <span className="mt-1.5 w-1 h-1 rounded-full bg-zinc-600 group-hover/item:bg-white transition-colors shrink-0"></span>
+                    <span className="leading-relaxed group-hover/item:text-zinc-200 transition-colors">
+                      {detail}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Stack */}
+            <div className="space-y-4">
+              <h4 className="font-mono text-xs text-zinc-500 uppercase tracking-widest">Technologies</h4>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((tech: string, i: number) => (
+                  <span 
+                    key={i} 
+                    className="px-2.5 py-1 text-xs font-mono text-zinc-400 border border-white/10 rounded bg-white/5 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all cursor-default"
+                  >
+                    {tech}
                   </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Tech Stack */}
-          <div className="flex flex-wrap gap-2 pt-6 border-t border-white/5">
-            {project.tech.map((tech: string, i: number) => (
-              <span 
-                key={i} 
-                className="px-3 py-1 text-xs font-medium font-mono text-zinc-400 bg-zinc-900/50 border border-white/5 rounded hover:border-white/20 hover:text-white transition-colors cursor-default"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </motion.div>
