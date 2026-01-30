@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
     ],
     logo: '', 
     color: '#3B82F6', 
-    backgroundImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop'
+    backgroundImage: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2232&auto=format&fit=crop'
   },
   {
     company: 'Zomato - Team OneSupport',
