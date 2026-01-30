@@ -1,5 +1,7 @@
 # Rahul Kumar - Backend Developer & AI Engineer
 
+<img width="1470" height="799" alt="Screenshot 2026-01-31 at 4 25 48 AM" src="https://github.com/user-attachments/assets/cd637f35-961c-4f4a-ac4d-4f1217fff74f" />
+
 Welcome to my personal portfolio. This project represents the intersection of **scalable backend engineering** and **immersive digital art**. 
 
 It is designed not just to display information, but to provide an **addictive, high-performance experience** that reflects my obsession with system quality and user experience.
