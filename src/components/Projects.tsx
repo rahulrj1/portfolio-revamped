@@ -1,48 +1,108 @@
+"use client";
 import React from 'react';
+import { motion } from 'framer-motion';
 import { projects } from '@/data/resume';
+import { ExternalLink, Github, Code2, Database, Server } from 'lucide-react';
 
 const Projects = () => {
+  // Use abstract tech-themed images from Unsplash
+  const projectImages = [
+    "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop", // Code/dark theme
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"  // Dashboard/analytics
+  ];
+
   return (
-    <section id="projects" className="py-20 bg-black text-white relative">
+    <section id="projects" className="py-32 bg-black text-white relative">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-12 text-center text-purple-400">Featured Projects</h2>
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            Featured Projects
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            A selection of projects demonstrating full-stack capabilities and problem-solving skills.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
           {projects.map((project, index) => (
-            <div key={index} className="group relative flex flex-col bg-zinc-900/50 rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 border border-zinc-800">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="group relative bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-purple-500/50 transition-all duration-500 hover:shadow-[0_0_50px_-10px_rgba(168,85,247,0.2)]"
+            >
+              {/* Project Image Area */}
+              <div className="relative h-64 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent z-10"></div>
+                <img 
+                  src={projectImages[index % projectImages.length]} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+                
+                {/* Floating Tech Badges */}
+                <div className="absolute top-4 right-4 z-20 flex flex-wrap justify-end gap-2 max-w-[70%]">
+                  {project.tech.slice(0, 3).map((t, i) => (
+                    <span key={i} className="px-3 py-1 bg-black/60 backdrop-blur-md text-xs font-medium text-purple-300 rounded-full border border-purple-500/20">
+                      {t}
+                    </span>
+                  ))}
+                  {project.tech.length > 3 && (
+                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-xs font-medium text-gray-300 rounded-full border border-zinc-700">
+                      +{project.tech.length - 3}
+                    </span>
+                  )}
+                </div>
+              </div>
               
-              <div className="p-8 relative z-10 flex-grow">
+              <div className="relative p-8 z-20 -mt-10">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">{project.title}</h3>
+                  <div>
+                    <h3 className="text-3xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
+                      {project.title}
+                    </h3>
+                  </div>
                   {project.link && (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="p-3 bg-white text-black rounded-full hover:bg-purple-400 transition-colors transform hover:rotate-12 hover:scale-110 shadow-lg"
+                    >
+                      <Github className="w-5 h-5" />
                     </a>
                   )}
                 </div>
                 
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((t, i) => (
-                    <span key={i} className="px-3 py-1 bg-purple-500/10 text-xs font-medium text-purple-300 rounded-full border border-purple-500/20">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                
-                <p className="text-gray-300 mb-6 font-medium">{project.description}</p>
+                <p className="text-gray-300 mb-8 leading-relaxed">
+                  {project.description}
+                </p>
                 
                 {project.details && (
-                  <ul className="space-y-2 mb-6">
-                    {project.details.map((detail, i) => (
-                      <li key={i} className="flex items-start text-sm text-gray-400">
-                        <span className="mr-2 mt-1.5 w-1 h-1 bg-purple-500 rounded-full shrink-0"></span>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-2">
+                      <Code2 className="w-4 h-4" /> Key Features
+                    </h4>
+                    <ul className="space-y-3">
+                      {project.details.map((detail, i) => (
+                        <li key={i} className="flex items-start text-sm text-gray-400 group/item">
+                          <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-zinc-600 rounded-full group-hover/item:bg-purple-500 transition-colors"></span>
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
