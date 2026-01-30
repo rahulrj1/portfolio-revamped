@@ -89,13 +89,13 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="flex items-center gap-6 mb-12"
+          className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-12"
         >
-          <div className="h-px w-12 bg-zinc-700"></div>
-          <span className="font-mono text-sm md:text-base text-zinc-400 tracking-[0.2em] uppercase">
-            Backend Architect & System Designer
-          </span>
-          <div className="h-px w-12 bg-zinc-700"></div>
+          <div className="hidden md:block h-px w-12 bg-zinc-700"></div>
+          <p className="font-mono text-sm md:text-base text-zinc-400 tracking-[0.15em] uppercase text-center">
+            Backend Architect <span className="text-zinc-600 px-2">/</span> System Designer <span className="text-zinc-600 px-2">/</span> AI Engineer
+          </p>
+          <div className="hidden md:block h-px w-12 bg-zinc-700"></div>
         </motion.div>
 
         {/* Elegant Call to Action */}
@@ -127,19 +127,21 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-0 w-full py-8 border-t border-white/5 bg-gradient-to-t from-black to-transparent"
+        className="absolute bottom-0 w-full py-8 border-t border-white/5 bg-gradient-to-t from-black to-transparent backdrop-blur-[2px]"
       >
-        <div className="flex overflow-hidden opacity-30 hover:opacity-100 transition-opacity duration-700">
-           <div className="flex gap-16 animate-infinite-scroll w-max hover:pause pl-4">
-            {techStack.map((tech, i) => (
-              <span key={i} className="text-sm font-mono text-zinc-500 uppercase tracking-widest">
-                {tech}
-              </span>
-            ))}
-            {techStack.map((tech, i) => (
-              <span key={`dup-${i}`} className="text-sm font-mono text-zinc-500 uppercase tracking-widest">
-                {tech}
-              </span>
+        <div className="flex overflow-hidden opacity-60 hover:opacity-100 transition-opacity duration-700">
+           <div className="flex gap-16 animate-infinite-scroll w-max hover:pause pl-4 items-center">
+            {[...techStack, ...techStack].map((tech, i) => (
+              <div key={i} className="flex items-center gap-3 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+                <img 
+                  src={tech.icon} 
+                  alt={tech.name} 
+                  className="w-6 h-6 object-contain"
+                />
+                <span className="text-sm font-mono text-zinc-400 uppercase tracking-widest">
+                  {tech.name}
+                </span>
+              </div>
             ))}
           </div>
         </div>
@@ -161,9 +163,18 @@ const SocialLink = ({ href, icon }: { href: string, icon: any }) => (
 );
 
 const techStack = [
-  "Distributed Systems", "Microservices", "System Design", "Kafka", "Redis", 
-  "PostgreSQL", "MongoDB", "Docker", "Kubernetes", "AWS", "Go", "Python", 
-  "GraphQL", "gRPC", "High Availability", "Fault Tolerance"
+  { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+  { name: "Go", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg" },
+  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+  { name: "Kubernetes", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
+  { name: "Kafka", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" },
+  { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+  { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
+  { name: "GraphQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" }
 ];
 
 export default Hero;
