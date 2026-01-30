@@ -30,7 +30,7 @@ const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
             </span>
-            Available for new opportunities
+            Backend Software Engineer
           </span>
         </motion.div>
         
@@ -49,7 +49,7 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
         >
-          Backend Software Engineer specializing in <span className="text-white font-semibold">Scalable Systems</span>, <span className="text-white font-semibold">Microservices</span>, and <span className="text-white font-semibold">AI Integration</span>.
+          Building <span className="text-white font-semibold">Scalable Systems</span>, <span className="text-white font-semibold">Microservices</span>, and integrating <span className="text-white font-semibold">AI Solutions</span>.
         </motion.p>
         
         <motion.div 

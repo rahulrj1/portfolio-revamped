@@ -19,11 +19,11 @@ const Contact = () => {
           className="max-w-4xl mx-auto text-center mb-16"
         >
           <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-            Let's work together.
+            Let's Connect
           </h2>
           <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            I'm currently looking for new opportunities as a Backend Engineer. 
-            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            I'm always open to discussing backend engineering, distributed systems, and AI technologies. 
+            Feel free to reach out if you'd like to chat or collaborate on interesting projects.
           </p>
           
           <motion.a 
