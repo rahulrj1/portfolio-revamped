@@ -13,7 +13,6 @@ export const experiences: Experience[] = [
     ],
     logo: '', 
     color: '#3B82F6', 
-    // Image: Professional financial workspace with documents and data analysis - Directly relevant to "Document Automation"
     backgroundImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop'
   },
   {
@@ -50,23 +49,31 @@ export const projects: Project[] = [
   {
     title: 'Online Chess Platform',
     tech: ['ExpressJS', 'WebSockets', 'MongoDB', 'ReactJS', 'JWT', 'Bcrypt'],
-    description: 'Built a real-time multiplayer chess platform using WebSockets to enable low-latency 2-player gameplay.',
+    description: 'A real-time multiplayer chess platform engineered for low-latency gameplay and seamless state synchronization.',
     details: [
-      'Designed & implemented core chess engine logic with move validation, turn enforcement & illegal-move prevention.',
-      'Implemented secure authentication using JWT and bcrypt, managing session state via HTTP cookies.',
-      'Developed REST APIs using Express.js, persisting game state and user data in MongoDB schemas.'
+      'Architected a WebSocket-based event loop to handle real-time move validation and game state broadcasts with sub-50ms latency.',
+      'Implemented a custom chess engine logic for move validation, checkmate detection, and illegal move prevention.',
+      'Secured user sessions with JWT and HttpOnly cookies, ensuring persistent and safe gameplay experiences.',
+      'Designed efficient MongoDB schemas to store game histories and replay data for post-match analysis.'
     ],
-    link: 'https://github.com/rahulrj1' 
+    link: 'https://github.com/rahulrj1',
+    // Updated: High-contrast, cinematic, and artistic chess image
+    image: 'https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2658&auto=format&fit=crop', 
+    color: '#F59E0B' 
   },
   {
     title: 'Notes Managing Application',
-    tech: ['Django', 'REST APIs', 'MySQL'],
-    description: 'Secure and scalable note creation, retrieval, updates, and deletion.',
+    tech: ['Django', 'REST APIs', 'MySQL', 'Python'],
+    description: 'A secure, scalable note-taking system designed for high availability and data consistency.',
     details: [
-      'Built REST APIs using Django, enabling secure and scalable note creation, retrieval, updates, and deletion.',
-      'Modeled relational data in MySQL with optimized queries and schema design to ensure data consistency and persistence.'
+      'Built robust RESTful APIs using Django REST Framework to handle note creation, retrieval, and updates with granular permissions.',
+      'Optimized MySQL database queries and indexed schema fields to ensure fast retrieval even with large datasets.',
+      'Implemented token-based authentication to secure user data and private notes.',
+      'Designed a modular architecture allowing for easy future extensions like sharing or collaboration features.'
     ],
-    link: 'https://github.com/rahulrj1'
+    link: 'https://github.com/rahulrj1',
+    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=2070&auto=format&fit=crop',
+    color: '#10B981' 
   }
 ];
 

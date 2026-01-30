@@ -1,112 +1,132 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { projects } from '@/data/resume';
-import { ExternalLink, Github, Code2, Database, Server } from 'lucide-react';
+import { Github, ExternalLink, Code2, Layers, Cpu, ArrowUpRight } from 'lucide-react';
 
 const Projects = () => {
-  // Use abstract tech-themed images from Unsplash
-  const projectImages = [
-    "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop", // Code/dark theme
-    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"  // Dashboard/analytics
-  ];
-
   return (
-    <section id="projects" className="py-32 bg-black text-white relative">
+    <section id="projects" className="bg-black text-white py-32 relative">
       <div className="container mx-auto px-4">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-20"
+          className="mb-24 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-            Featured Projects
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+            Featured Work
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            A selection of projects demonstrating full-stack capabilities and problem-solving skills.
+            Engineering robust solutions for complex problems.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
+        <div className="space-y-32">
           {projects.map((project, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="group relative bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-purple-500/50 transition-all duration-500 hover:shadow-[0_0_50px_-10px_rgba(168,85,247,0.2)]"
-            >
-              {/* Project Image Area */}
-              <div className="relative h-64 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent z-10"></div>
-                <img 
-                  src={projectImages[index % projectImages.length]} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-                
-                {/* Floating Tech Badges */}
-                <div className="absolute top-4 right-4 z-20 flex flex-wrap justify-end gap-2 max-w-[70%]">
-                  {project.tech.slice(0, 3).map((t, i) => (
-                    <span key={i} className="px-3 py-1 bg-black/60 backdrop-blur-md text-xs font-medium text-purple-300 rounded-full border border-purple-500/20">
-                      {t}
-                    </span>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-xs font-medium text-gray-300 rounded-full border border-zinc-700">
-                      +{project.tech.length - 3}
-                    </span>
-                  )}
-                </div>
-              </div>
-              
-              <div className="relative p-8 z-20 -mt-10">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-3xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
-                      {project.title}
-                    </h3>
-                  </div>
-                  {project.link && (
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="p-3 bg-white text-black rounded-full hover:bg-purple-400 transition-colors transform hover:rotate-12 hover:scale-110 shadow-lg"
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
-                  )}
-                </div>
-                
-                <p className="text-gray-300 mb-8 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                {project.details && (
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-2">
-                      <Code2 className="w-4 h-4" /> Key Features
-                    </h4>
-                    <ul className="space-y-3">
-                      {project.details.map((detail, i) => (
-                        <li key={i} className="flex items-start text-sm text-gray-400 group/item">
-                          <span className="mr-3 mt-1.5 w-1.5 h-1.5 bg-zinc-600 rounded-full group-hover/item:bg-purple-500 transition-colors"></span>
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </motion.div>
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>
     </section>
+  );
+};
+
+const ProjectCard = ({ project, index }: { project: any; index: number }) => {
+  const isEven = index % 2 === 0;
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "1.2 1"]
+  });
+  
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.6, 1]);
+
+  return (
+    <motion.div 
+      ref={ref}
+      style={{ scale, opacity }}
+      className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}
+    >
+      {/* Visual Side */}
+      <div className="w-full lg:w-3/5 group perspective-1000">
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 transform group-hover:rotate-x-2 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10">
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 z-10"></div>
+          
+          {/* Project Image */}
+          <div className="aspect-video overflow-hidden">
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+            />
+          </div>
+
+          {/* Overlay Tech Badges */}
+          <div className="absolute bottom-6 left-6 z-20 flex flex-wrap gap-2">
+            {project.tech.map((tech: string, i: number) => (
+              <span 
+                key={i} 
+                className="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white shadow-lg"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+        
+        {/* Artistic Accent */}
+        <div 
+          className={`absolute -inset-4 bg-gradient-to-r from-transparent via-${project.color}-500/20 to-transparent blur-2xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
+          style={{ background: `radial-gradient(circle, ${project.color}20 0%, transparent 70%)` }}
+        ></div>
+      </div>
+
+      {/* Content Side */}
+      <div className="w-full lg:w-2/5 relative">
+        <div className="absolute -left-10 top-0 text-9xl font-bold text-white/5 pointer-events-none select-none -translate-y-1/2 font-serif">
+          0{index + 1}
+        </div>
+        
+        <h3 className="text-4xl font-bold mb-6 text-white group-hover:text-purple-400 transition-colors">
+          {project.title}
+        </h3>
+        
+        <p className="text-xl text-gray-300 mb-8 leading-relaxed font-light">
+          {project.description}
+        </p>
+
+        <div className="space-y-6 mb-10">
+          {project.details?.map((detail: string, i: number) => (
+            <div key={i} className="flex gap-4 group/item">
+              <div 
+                className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 transition-colors duration-300"
+                style={{ backgroundColor: project.color }}
+              ></div>
+              <p className="text-sm text-gray-400 leading-relaxed group-hover/item:text-gray-200 transition-colors">
+                {detail}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-6">
+          {project.link && (
+            <a 
+              href={project.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group/btn flex items-center gap-3 px-6 py-3 bg-white text-black rounded-full font-bold transition-all hover:bg-gray-200 hover:scale-105"
+            >
+              <Github className="w-5 h-5" />
+              <span>View Code</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

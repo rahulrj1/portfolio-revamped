@@ -4,8 +4,8 @@ export interface Experience {
   duration: string;
   description: string[];
   logo: string;
-  color?: string; // Hex code or Tailwind color class for accent
-  backgroundImage?: string; // URL for a subtle background
+  color?: string;
+  backgroundImage?: string;
 }
 
 export interface Project {
@@ -14,6 +14,8 @@ export interface Project {
   description: string;
   details?: string[];
   link?: string;
+  image?: string; // New field for project image
+  color?: string; // New field for accent color
 }
 
 export interface SkillCategory {
