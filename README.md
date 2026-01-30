@@ -1,31 +1,39 @@
-# Rahul Kumar - Personal Portfolio
+# Rahul Kumar - Backend Developer & AI Engineer
 
-Welcome to the repository for my personal portfolio website. I built this project to showcase my experience as a Backend Software Engineer, my technical skills, and the projects I've worked on.
+Welcome to my personal portfolio. This project represents the intersection of **scalable backend engineering** and **immersive digital art**. 
 
-The site is designed to be minimalist, high-performance, and responsive, leveraging the latest web technologies to reflect my passion for building scalable systems.
+It is designed not just to display information, but to provide an **addictive, high-performance experience** that reflects my obsession with system quality and user experience.
 
-## 🚀 Built With
+## 🎨 Design Philosophy: "Void & Light"
 
-I used a modern tech stack to ensure scalability, type safety, and performance:
+The design system follows a "Void & Light" aesthetic—deep, atmospheric backgrounds punctuated by meaningful data and interaction.
 
-- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
-- **Containerization**: [Docker](https://www.docker.com/)
-- **Icons**: Lucide React
+-   **Atmospheric Depth**: A dynamic, mouse-reactive neural mesh background.
+-   **Holographic Schematics**: Projects are visualized as 3D-tilting glass cards with schematic overlays, representing the "engineering under the hood."
+-   **Addictive UX**: Infinite marquees, glitch typography, and micro-interactions that reward curiosity.
+-   **Performance First**: Built with Next.js 15 and Tailwind v4 for zero-layout-shift loading and 60fps animations.
+
+## 🚀 Tech Stack
+
+-   **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+-   **Animation**: [Framer Motion](https://www.framer.com/motion/)
+-   **Icons**: Lucide React & DevIcons
+-   **Deployment**: Docker & GitHub Pages
 
 ## 📂 Project Structure
 
-I organized the codebase to follow production-grade standards, separating data, logic, and UI:
-
-- `src/data/`: Centralized content management (Experience, Projects, Skills).
-- `src/components/`: Reusable React components used across the site.
-- `src/app/`: Next.js App Router pages, layouts, and global styles.
-- `src/types/`: TypeScript definitions for type safety.
+```
+src/
+├── app/          # Next.js App Router (Pages & Layouts)
+├── components/   # Modular, re-usable UI components (Hero, Projects, etc.)
+├── data/         # Centralized resume data (Single source of truth)
+├── types/        # TypeScript interfaces
+└── lib/          # Utilities
+```
 
 ## 🏃‍♂️ Running Locally
-
-If you'd like to run this project locally:
 
 1.  **Clone the repository:**
     ```bash
@@ -48,20 +56,16 @@ If you'd like to run this project locally:
 
 ## 🐳 Docker Support
 
-I've included a production-ready Docker setup. To run the app in a container:
+This project is fully containerized for production consistency.
 
 ```bash
 docker-compose up --build -d
 ```
 
-## 📫 Contact Me
+## 🌍 Hosting
 
-Feel free to reach out if you have any questions or want to discuss backend engineering, AI/ML, or new opportunities:
-
-- **Email**: [rahuljas2050@gmail.com](mailto:rahuljas2050@gmail.com)
-- **LinkedIn**: [linkedin.com/in/rahul-rj](https://linkedin.com/in/rahul-rj)
-- **GitHub**: [github.com/rahulrj1](https://github.com/rahulrj1)
+This portfolio is static-export compatible and can be hosted freely on GitHub Pages, Vercel, or Netlify.
 
 ---
 
-© 2026 Rahul Kumar.
+**© 2026 Rahul Kumar.** _Backend Developer / System Designer / AI Engineer._

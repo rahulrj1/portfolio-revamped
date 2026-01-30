@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: personal_portfolio
+    container_name: portfolio-revamped
     restart: always
     ports:
       - "3000:3000"

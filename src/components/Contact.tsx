@@ -86,7 +86,7 @@ const Contact = () => {
         <footer className="text-center border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm max-w-4xl mx-auto">
           <p>© {new Date().getFullYear()} Rahul Kumar. All rights reserved.</p>
           <p className="flex items-center gap-2 mt-2 md:mt-0">
-            Built with <span className="text-white">Next.js</span> & <span className="text-white">Tailwind CSS</span>
+            Built with <span className="text-white font-medium hover:text-blue-400 transition-colors">Cursor AI</span>
           </p>
         </footer>
       </div>
