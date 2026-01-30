@@ -13,8 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rahul Kumar | Backend Engineer",
+  title: "Rahul Kumar | Backend Developer",
   description: "Portfolio of Rahul Kumar, a Backend Software Engineer specializing in scalable systems, microservices, and AI integration.",
+  icons: {
+    icon: [
+      {
+        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000000'/><text x='50' y='55' font-family='Arial, sans-serif' font-weight='bold' font-size='45' text-anchor='middle' dominant-baseline='central'><tspan fill='%23ffffff'>R</tspan><tspan fill='%233B82F6'>K</tspan><tspan fill='%23ffffff'>.</tspan></text></svg>",
+        type: "image/svg+xml",
+      }
+    ]
+  }
 };
 
 export default function RootLayout({

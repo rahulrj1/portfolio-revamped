@@ -93,7 +93,7 @@ const Hero = () => {
         >
           <div className="hidden md:block h-px w-12 bg-zinc-700"></div>
           <p className="font-mono text-sm md:text-base text-zinc-400 tracking-[0.15em] uppercase text-center">
-            Backend Architect <span className="text-zinc-600 px-2">/</span> System Designer <span className="text-zinc-600 px-2">/</span> AI Engineer
+            Backend Developer <span className="text-zinc-600 px-2">/</span> System Designer <span className="text-zinc-600 px-2">/</span> AI Engineer
           </p>
           <div className="hidden md:block h-px w-12 bg-zinc-700"></div>
         </motion.div>
