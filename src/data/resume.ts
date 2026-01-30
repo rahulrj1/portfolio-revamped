@@ -57,8 +57,6 @@ export const projects: Project[] = [
       'Designed efficient MongoDB schemas to store game histories and replay data for post-match analysis.'
     ],
     link: 'https://github.com/rahulrj1',
-    // Updated: High-contrast, cinematic, and artistic chess image
-    image: 'https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2658&auto=format&fit=crop', 
     color: '#F59E0B' 
   },
   {
@@ -72,7 +70,6 @@ export const projects: Project[] = [
       'Designed a modular architecture allowing for easy future extensions like sharing or collaboration features.'
     ],
     link: 'https://github.com/rahulrj1',
-    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=2070&auto=format&fit=crop',
     color: '#10B981' 
   }
 ];
