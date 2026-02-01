@@ -42,6 +42,31 @@ export const experiences: Experience[] = [
     logo: '',
     color: '#0F52BA', 
     backgroundImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'
+  },
+  {
+    company: 'GenVR Labs Pvt. Ltd.',
+    role: 'Software Development Engineer Intern',
+    duration: 'Mar 2023 – May 2023',
+    description: [
+      'Enhanced frontend of company\'s website using ReactJS, improving visual appeal and user experience.',
+      'Developed a Python script in Colab notebook to download keyword-filtered objects from Objaverse, and integrated it with an ML image captioning model for improved filtering.'
+    ],
+    logo: '',
+    color: '#8B5CF6',
+    backgroundImage: 'https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=2070&auto=format&fit=crop'
+  },
+  {
+    company: 'GSSoC (GirlScript Summer of Code)',
+    role: 'Open Source Contributor',
+    duration: 'Mar 2021 – May 2021',
+    description: [
+      'Acquired proficiency in React.js, Git & Github while actively participating in the open source program.',
+      'Exhibited strong code review skills, identifying and addressing issues within the learning section of pbchess project.',
+      'Conducted comprehensive research on popular chess openings and successfully integrated them into the project.'
+    ],
+    logo: '',
+    color: '#EC4899',
+    backgroundImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop'
   }
 ];
 
