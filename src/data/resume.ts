@@ -1,4 +1,4 @@
-import { Experience, Project, SkillCategory, Education, Achievement, Publication } from "@/types";
+import { Experience, Project, SkillCategory, Education, Achievement, Publication, Hobby } from "@/types";
 
 export const experiences: Experience[] = [
   {
@@ -124,8 +124,56 @@ export const education: Education = {
   institution: "Indian Institute of Technology Indore",
   degree: "B.Tech. in Electrical Engineering",
   duration: "Jul 2019 – May 2023",
-  gpa: "Overall CGPA: 8.49"
+  gpa: "Overall CGPA: 8.49",
+  courses: [
+    "Computer Programming (C++ & OOP)",
+    "Advanced Algorithms",
+    "Digital Systems",
+    "Microprocessors",
+    "Probability & Random Processes",
+    "Linear Algebra",
+    "Signals & Systems"
+  ]
 };
+
+export const hobbies: Hobby[] = [
+  { 
+    name: "Chess", 
+    icon: "♟️", 
+    color: "#F59E0B",
+    description: "Strategizing moves on the 64 squares. Intra-IIT Gold Medalist."
+  },
+  { 
+    name: "Guitar", 
+    icon: "🎸", 
+    color: "#EC4899",
+    description: "Strumming melodies and exploring acoustic rhythms."
+  },
+  { 
+    name: "Sketching", 
+    icon: "✏️", 
+    color: "#8B5CF6",
+    description: "Capturing expressions through charcoal and graphite portraits."
+  },
+  { 
+    name: "Reading", 
+    icon: "📚", 
+    color: "#10B981",
+    description: "Exploring new worlds through fiction and tech blogs."
+  },
+  { 
+    name: "Creative Writing", 
+    icon: "✒️", 
+    color: "#3B82F6",
+    description: "Weaving thoughts into stories and poetry."
+  },
+  { 
+    name: "Competitive Coding", 
+    icon: "💻", 
+    color: "#EF4444",
+    description: "Solving complex algorithmic problems against the clock."
+  }
+];
 
 export const contactInfo = {
   email: "rahuljas2050@gmail.com",

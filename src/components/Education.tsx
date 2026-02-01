@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { education } from '@/data/resume';
-import { GraduationCap, MapPin } from 'lucide-react';
+import { GraduationCap, MapPin, BookOpen, Quote, ExternalLink } from 'lucide-react';
 
 const Education = () => {
   return (
@@ -29,7 +29,15 @@ const Education = () => {
                   <GraduationCap className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{education.institution}</h3>
+                  <a 
+                    href="https://www.iiti.ac.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link flex items-center gap-2 text-2xl font-bold text-white mb-2 hover:text-purple-400 transition-colors"
+                  >
+                    {education.institution}
+                    <ExternalLink className="w-5 h-5 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                  </a>
                   <p className="text-lg text-gray-400 mb-2">{education.degree}</p>
                   <div className="flex items-center gap-2 text-sm text-gray-500">
                     <MapPin className="w-4 h-4" /> Indore, India
@@ -45,6 +53,51 @@ const Education = () => {
                   {education.gpa}
                 </span>
               </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mt-8 pt-6 border-t border-zinc-800">
+              {/* Relevant Coursework */}
+              {education.courses && education.courses.length > 0 && (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <BookOpen className="w-4 h-4 text-purple-400" />
+                    <span className="text-sm font-medium text-gray-400 uppercase tracking-wider">Coursework</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {education.courses.map((course, index) => (
+                      <span
+                        key={course}
+                        className="px-2.5 py-1 bg-zinc-900/50 text-gray-400 text-xs rounded border border-zinc-800 hover:border-zinc-700 transition-colors"
+                      >
+                        {course}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Quote Section */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-col justify-center relative p-6 bg-zinc-900/30 rounded-xl border border-zinc-800/50"
+              >
+                <Quote className="absolute top-4 left-4 w-6 h-6 text-purple-500/20 rotate-180" />
+                <p className="text-gray-400 italic text-sm text-center relative z-10 px-4">
+                  &ldquo;Scientists investigate that which already is; Engineers create that which has never been.&rdquo;
+                </p>
+                <p className="text-purple-400/60 text-xs font-mono text-center mt-3">
+                  — Albert Einstein
+                </p>
+                <Quote className="absolute bottom-4 right-4 w-6 h-6 text-purple-500/20" />
+              </motion.div>
             </div>
           </div>
         </motion.div>

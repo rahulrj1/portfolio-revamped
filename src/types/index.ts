@@ -45,6 +45,14 @@ export interface Education {
   degree: string;
   duration: string;
   gpa: string;
+  courses?: string[];
+}
+
+export interface Hobby {
+  name: string;
+  icon: string;
+  color: string;
+  description: string;
 }
 
 export interface SocialLink {

@@ -6,7 +6,7 @@ import { Mail, Phone, Linkedin, Github, ArrowUpRight } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-32 bg-black text-white relative overflow-hidden">
+    <section id="contact" className="py-32 bg-gradient-to-b from-black to-zinc-900 text-white relative overflow-hidden border-t border-zinc-800">
       {/* Background Gradients */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(59,130,246,0.1),_transparent_50%)]"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(168,85,247,0.1),_transparent_50%)]"></div>
@@ -18,7 +18,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">
             Let's Connect
           </h2>
           <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
