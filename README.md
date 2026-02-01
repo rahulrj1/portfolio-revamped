@@ -60,9 +60,28 @@ src/
 
 This project is fully containerized for production consistency.
 
-```bash
-docker-compose up --build -d
-```
+1.  **Update `next.config.ts`** — change from static export to standalone mode:
+    ```ts
+    const nextConfig: NextConfig = {
+      // For static export (e.g., GitHub Pages), use:
+      // output: 'export',
+      // images: {
+      //   unoptimized: true,
+      // },
+      // basePath: '/portfolio-revamped',
+      // assetPrefix: '/portfolio-revamped/',
+
+      // For Docker/local:
+      output: 'standalone',
+    };
+    ```
+
+2.  **Build and run:**
+    ```bash
+    docker-compose up --build -d
+    ```
+    
+3.  **Open in browser:** Navigate to [http://localhost:3000](http://localhost:3000).
 
 ## 🌍 Hosting
 

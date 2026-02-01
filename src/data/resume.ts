@@ -51,12 +51,12 @@ export const projects: Project[] = [
     tech: ['ExpressJS', 'WebSockets', 'MongoDB', 'ReactJS', 'JWT', 'Bcrypt'],
     description: 'A real-time multiplayer chess platform engineered for low-latency gameplay and seamless state synchronization.',
     details: [
-      'Architected a WebSocket-based event loop to handle real-time move validation and game state broadcasts with sub-50ms latency.',
-      'Implemented a custom chess engine logic for move validation, checkmate detection, and illegal move prevention.',
-      'Secured user sessions with JWT and HttpOnly cookies, ensuring persistent and safe gameplay experiences.',
-      'Designed efficient MongoDB schemas to store game histories and replay data for post-match analysis.'
+      'Built a real-time multiplayer chess platform using WebSockets to enable low-latency 2-player gameplay.',
+      'Designed & implemented core chess engine logic with move validation, turn enforcement & illegal-move prevention.',
+      'Implemented secure authentication using JWT and bcrypt, managing session state via HTTP cookies.',
+      'Developed REST APIs using Express.js, persisting game state and user data in MongoDB schemas.'
     ],
-    link: 'https://github.com/rahulrj1',
+    link: 'https://github.com/rahulrj1/chess-web-app',
     color: '#F59E0B' 
   },
   {
@@ -64,12 +64,10 @@ export const projects: Project[] = [
     tech: ['Django', 'REST APIs', 'MySQL', 'Python'],
     description: 'A secure, scalable note-taking system designed for high availability and data consistency.',
     details: [
-      'Built robust RESTful APIs using Django REST Framework to handle note creation, retrieval, and updates with granular permissions.',
-      'Optimized MySQL database queries and indexed schema fields to ensure fast retrieval even with large datasets.',
-      'Implemented token-based authentication to secure user data and private notes.',
-      'Designed a modular architecture allowing for easy future extensions like sharing or collaboration features.'
+      'Built REST APIs using Django, enabling secure and scalable note creation, retrieval, updates, and deletion.',
+      'Modeled relational data in MySQL with optimized queries and schema design to ensure data consistency and persistence.'
     ],
-    link: 'https://github.com/rahulrj1',
+    link: 'https://github.com/rahulrj1/notes-taking-app',
     color: '#10B981' 
   }
 ];
