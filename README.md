@@ -1,5 +1,7 @@
 # Rahul Kumar - Backend Developer & AI Engineer
 
+[![Built with Cursor AI](https://img.shields.io/badge/Built_with-Cursor_AI-F0F0F0?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTMuNSAyLjVMMy41IDEyLjVMMTMuNSAyMi41IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNMjAuNSAyLjVMMTAuNSAxMi41TDIwLjUgMjIuNSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+&logoColor=000)](https://cursor.com)
+
 <img width="1470" height="799" alt="Screenshot 2026-01-31 at 4 25 48 AM" src="https://github.com/user-attachments/assets/cd637f35-961c-4f4a-ac4d-4f1217fff74f" />
 
 Welcome to my personal portfolio. This project represents the intersection of **scalable backend engineering** and **immersive digital art**. 
@@ -13,11 +15,11 @@ The design system follows a "Void & Light" aesthetic—deep, atmospheric backgro
 -   **Atmospheric Depth**: A dynamic, mouse-reactive neural mesh background.
 -   **Holographic Schematics**: Projects are visualized as 3D-tilting glass cards with schematic overlays, representing the "engineering under the hood."
 -   **Addictive UX**: Infinite marquees, glitch typography, and micro-interactions that reward curiosity.
--   **Performance First**: Built with Next.js 15 and Tailwind v4 for zero-layout-shift loading and 60fps animations.
+-   **Performance First**: Built with Next.js 16 and Tailwind v4 for zero-layout-shift loading and 60fps animations.
 
 ## 🚀 Tech Stack
 
--   **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+-   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 -   **Language**: [TypeScript](https://www.typescriptlang.org/)
 -   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 -   **Animation**: [Framer Motion](https://www.framer.com/motion/)
