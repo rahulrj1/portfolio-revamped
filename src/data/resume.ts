@@ -72,7 +72,7 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
-    title: 'Online Chess Platform',
+    title: 'Chess Web App',
     tech: ['ExpressJS', 'WebSockets', 'MongoDB', 'ReactJS', 'JWT', 'Bcrypt'],
     description: 'A real-time multiplayer chess platform engineered for low-latency gameplay and seamless state synchronization.',
     details: [
@@ -166,12 +166,6 @@ export const hobbies: Hobby[] = [
     icon: "✒️", 
     color: "#3B82F6",
     description: "Weaving thoughts into stories and poetry."
-  },
-  { 
-    name: "Competitive Coding", 
-    icon: "💻", 
-    color: "#EF4444",
-    description: "Solving complex algorithmic problems against the clock."
   }
 ];
 

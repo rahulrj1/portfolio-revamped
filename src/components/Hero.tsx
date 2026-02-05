@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight, FileDown } from 'lucide-react';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -105,13 +105,26 @@ const Hero = () => {
           transition={{ duration: 1, delay: 1.2 }}
           className="flex flex-col gap-8 items-center"
         >
-          <a 
-            href="#projects" 
-            className="group flex items-center gap-4 text-white hover:text-blue-400 transition-colors duration-500"
-          >
-            <span className="text-lg font-medium tracking-wide border-b border-transparent group-hover:border-blue-400 transition-all">View Selected Works</span>
-            <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-500" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-6 items-center">
+            <a 
+              href="#projects" 
+              className="group flex items-center gap-4 text-white hover:text-blue-400 transition-colors duration-500"
+            >
+              <span className="text-lg font-medium tracking-wide border-b border-transparent group-hover:border-blue-400 transition-all">View Selected Works</span>
+              <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-500" />
+            </a>
+            
+            <span className="hidden sm:block text-zinc-600">|</span>
+            
+            <a 
+              href="/resume.pdf" 
+              download
+              className="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors duration-500"
+            >
+              <FileDown className="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-lg font-medium tracking-wide border-b border-transparent group-hover:border-white transition-all">Download Resume</span>
+            </a>
+          </div>
 
           {/* Minimal Social Links */}
           <div className="flex gap-8 mt-4">
