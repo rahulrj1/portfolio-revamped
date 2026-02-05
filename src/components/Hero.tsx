@@ -117,7 +117,7 @@ const Hero = () => {
             <span className="hidden sm:block text-zinc-600">|</span>
             
             <a 
-              href="/resume.pdf" 
+              href="/portfolio-revamped/Rahul_Kumar_Resume.pdf" 
               download
               className="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors duration-500"
             >
