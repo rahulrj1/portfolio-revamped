@@ -11,7 +11,6 @@ export const experiences: Experience[] = [
       'Developed the TPS monitoring module for the Ready for Business (RFB) synthetic testing suite in Java (Spring Boot) — detecting critical regressions instantly and enabling zero-impact rollbacks.',
       'Architected Ollie, a RAG-based support chatbot using Python, LangChain, OpenAI embeddings, and PGVector — driving end-to-end delivery from HLD/LLD to production.',
       'Designed infrastructure and load-testing pipelines for Ollie, reducing p90 latency by 75% and achieving 99.9% request success rate at peak load.',
-      'Mentored an intern across TPS and Ollie, guiding them through design reviews, code reviews, and production debugging.'
     ],
     logo: '', 
     color: '#3B82F6', 
@@ -85,7 +84,7 @@ export const projects: Project[] = [
       'Integrated Prometheus observability and a real-time pipeline visualizer via WebSockets + Redis Pub/Sub.',
       'Automated CI/CD with GitHub Actions running unit & E2E tests across 4 languages, containerized via Docker.'
     ],
-    link: 'https://github.com/rahulrj1/api-gateway',
+    link: 'https://github.com/rahulrj1/distributed-api-gateway',
     color: '#8B5CF6'
   },
   {
