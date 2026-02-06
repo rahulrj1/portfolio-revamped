@@ -6,10 +6,12 @@ export const experiences: Experience[] = [
     role: 'Software Engineer (Backend)',
     duration: 'Apr 2025 – Present',
     description: [
-      'Owned the Template Parser Service (TPS) for automated bank statement processing, resolving critical client issues and improving extraction effectiveness to 90%+ for top-tier banks.',
-      'Built RFB test suites in Java (Spring Boot) to continuously validate TPS behavior and trigger alerts on test failures.',
-      'Designed and developed a RAG-based chatbot (Ollie) for CX support, implementing vector embeddings and LLM-based retrieval from data.',
-      'Led end-to-end delivery of Ollie, including HLD, LLD, infrastructure setup, load testing, and production readiness.'
+      'Owned the Template Parser Service (TPS) for automated bank statement parsing, processing 220K+ daily requests across 1800+ banks and optimizing extraction logic to achieve 90%+ accuracy for top 20 high-volume banks.',
+      'Resolved 15+ critical client-reported parsing failures, debugging extraction logic and deploying fixes to ensure reliability.',
+      'Developed the TPS monitoring module for the Ready for Business (RFB) synthetic testing suite in Java (Spring Boot) — detecting critical regressions instantly and enabling zero-impact rollbacks.',
+      'Architected Ollie, a RAG-based support chatbot using Python, LangChain, OpenAI embeddings, and PGVector — driving end-to-end delivery from HLD/LLD to production.',
+      'Designed infrastructure and load-testing pipelines for Ollie, reducing p90 latency by 75% and achieving 99.9% request success rate at peak load.',
+      'Mentored an intern across TPS and Ollie, guiding them through design reviews, code reviews, and production debugging.'
     ],
     logo: '', 
     color: '#3B82F6', 
@@ -20,10 +22,11 @@ export const experiences: Experience[] = [
     role: 'SDE-I (Backend)',
     duration: 'Nov 2024 – Mar 2025',
     description: [
-      'Worked on OneSupport, a backend SDK powering post-order support across Zomato, Blinkit, District, and Hyperpure.',
-      'Led SDK integration into the Merchant KAM app, delivering features and fixes for rollout, improving ticket resolution metrics via automation.',
-      'Played a key role in optimizing infra costs by $7,000+ p.m. through efficient data management: enabling SQS bulk fetching and archiving old MongoDB data.',
-      'Resolved a critical authorization bug, preventing Vendor Managers from accessing tickets outside their scope, ensuring data privacy.'
+      'Shipped features for OneSupport, a backend SDK powering post-order support across Zomato, Blinkit, District, and Hyperpure — including agent inactivity alerts, customer history tracking, and ticket automation enhancements.',
+      'Managed platform reliability via rotational on-call, resolving production incidents and sustaining 24/7 uptime.',
+      'Led the end-to-end integration of OneSupport SDK into the Merchant KAM app, launching automation-driven escalations to reduce manual intervention for high-priority tickets.',
+      'Drove infra cost optimization saving $84K+/year — via SQS bulk fetching, pre-enqueue validations, merging low-usage workers, and archiving stale MongoDB data.',
+      'Patched a critical production authorization vulnerability flagged during compliance review, where Vendor Managers could access tickets outside their scope — affecting all platform users.'
     ],
     logo: '',
     color: '#E23744', 
@@ -34,10 +37,11 @@ export const experiences: Experience[] = [
     role: 'Software Development Engineer',
     duration: 'Aug 2023 – Oct 2024',
     description: [
-      'Built backend services for the Jio Edge Cloud platform, including a datacenter management tool that reduced cluster provisioning time by 70%.',
-      'Developed Go REST APIs backed by MongoDB, leveraging aggregation pipelines for efficient and scalable data access.',
-      'Implemented fine-grained authorization using OpenFGA, enabling policy-driven access control across platform resources.',
-      'Containerized backend services using Docker and deployed on K8s, across VM-based and containerized environments.'
+      'Designed and built a datacenter management platform in Go, replacing error-prone Excel-based provisioning with automated APIs — cutting Kubernetes cluster provisioning time by 70% and eliminating manual errors.',
+      'Built REST APIs backed by MongoDB aggregation pipelines for datacenter inventory and cluster lifecycle management.',
+      'Integrated Cisco APIC APIs for real-time switch metadata ingestion, powering infrastructure monitoring dashboards.',
+      'Implemented RBAC using OpenFGA, replacing an all-access model with scoped, cluster-level permissions — enforcing resource isolation per compliance policy.',
+      'Developed a cluster sharing feature on OpenFGA\'s relationship model, enabling scoped access delegation across teams.'
     ],
     logo: '',
     color: '#0F52BA', 
@@ -72,6 +76,19 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
+    title: 'Distributed API Gateway',
+    tech: ['Go', 'Redis', 'Prometheus', 'Docker', 'WebSockets', 'GitHub Actions'],
+    description: 'A horizontally-scalable API gateway with JWT auth, rate limiting, circuit breaker, and real-time observability.',
+    details: [
+      'Built a distributed API gateway in Go with JWT auth, sliding window rate limiting, and fail-open resilience — sharing state across horizontally-scaled instances via atomic Redis Lua scripts.',
+      'Implemented a circuit breaker to detect downstream failures and short-circuit requests, preventing cascading outages.',
+      'Integrated Prometheus observability and a real-time pipeline visualizer via WebSockets + Redis Pub/Sub.',
+      'Automated CI/CD with GitHub Actions running unit & E2E tests across 4 languages, containerized via Docker.'
+    ],
+    link: 'https://github.com/rahulrj1/api-gateway',
+    color: '#8B5CF6'
+  },
+  {
     title: 'Chess Web App',
     tech: ['ExpressJS', 'WebSockets', 'MongoDB', 'ReactJS', 'JWT', 'Bcrypt'],
     description: 'A real-time multiplayer chess platform engineered for low-latency gameplay and seamless state synchronization.',
@@ -99,24 +116,21 @@ export const projects: Project[] = [
 
 export const skills: Record<string, string[]> = {
   "Languages & Frameworks": [
-    "Go", "Python", "Java", "C/C++", "JavaScript", 
-    "Spring Boot", "Flask", "ReactJS", "ExpressJS", "Django"
+    "Go", "Python", "C/C++", "Java",
+    "Spring Boot", "Flask"
   ],
-  "Backend & Systems": [
-    "REST", "gRPC", "Microservices", "System Design",
-    "Authentication (JWT, OAuth)", "Authorization (OpenFGA)",
-    "Async Processing", "WebSockets"
-  ],
-  "Databases & Streaming": [
-    "PostgreSQL", "MongoDB", "MySQL", "Redis", "Kafka"
+  "Backend & Databases": [
+    "REST", "gRPC", "Microservices",
+    "PostgreSQL", "MongoDB", "Redis", "Kafka", "SQS",
+    "OpenFGA"
   ],
   "AI & ML": [
-    "LLM Integration", "RAG (Retrieval-Augmented Generation)", 
-    "Vector Embeddings", "Vector Stores", "Prompt Engineering"
+    "LangChain", "OpenAI", "RAG",
+    "PGVector", "Embeddings", "LLM Integration"
   ],
   "Infrastructure & Tools": [
-    "Docker", "Kubernetes", "Linux", "Git", 
-    "Logging & Monitoring", "Observability", "Cursor IDE"
+    "AWS (S3, EC2, SQS)", "Docker", "Kubernetes", "Linux",
+    "GitHub Actions", "Grafana", "PagerDuty", "Prometheus"
   ]
 };
 
