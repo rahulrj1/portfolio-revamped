@@ -115,21 +115,24 @@ export const projects: Project[] = [
 
 export const skills: Record<string, string[]> = {
   "Languages & Frameworks": [
-    "Go", "Python", "C/C++", "Java",
-    "Spring Boot", "Flask"
+    "Go", "Python", "Java", "C/C++",, 
+    "Spring Boot", "Flask", "ExpressJS", "Django"
   ],
-  "Backend & Databases": [
-    "REST", "gRPC", "Microservices",
-    "PostgreSQL", "MongoDB", "Redis", "Kafka", "SQS",
-    "OpenFGA"
+  "Backend & Systems": [
+    "REST", "gRPC", "Microservices", "System Design",
+    "Authentication (JWT, OAuth)", "Authorization (OpenFGA)",
+    "Async Processing", "WebSockets"
+  ],
+  "Databases & Streaming": [
+    "PostgreSQL", "MongoDB", "MySQL", "Redis", "Kafka"
   ],
   "AI & ML": [
-    "LangChain", "OpenAI", "RAG",
+    "LangChain", "RAG",
     "PGVector", "Embeddings", "LLM Integration"
   ],
   "Infrastructure & Tools": [
-    "AWS (S3, EC2, SQS)", "Docker", "Kubernetes", "Linux",
-    "GitHub Actions", "Grafana", "PagerDuty", "Prometheus"
+    "Docker", "Kubernetes", "Linux", "Git", 
+    "Logging & Monitoring", "Observability", "Cursor IDE"
   ]
 };
 
