@@ -27,7 +27,7 @@ const Hobbies = () => {
           </div>
 
           {/* Unified Grid Layout */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {hobbies.map((hobby, index) => (
               <UnifiedHobbyCard 
                 key={hobby.name} 
@@ -49,7 +49,7 @@ const UnifiedHobbyCard = ({ hobby, index }: { hobby: any, index: number }) => {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="group relative h-full"
+      className="group relative w-40 sm:w-44"
     >
       <div 
         className="relative h-full bg-zinc-900/80 rounded-2xl border p-6 flex flex-col items-center justify-between overflow-hidden transition-all duration-300 group-hover:-translate-y-1 hover:shadow-xl backdrop-blur-sm"
